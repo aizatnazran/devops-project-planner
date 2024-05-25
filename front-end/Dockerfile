@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8080
 
 # Command to run the app
-CMD ["npm", "run", "serve"]
+CMD ["npm", "run", "serve", "--host 0.0.0.0"]

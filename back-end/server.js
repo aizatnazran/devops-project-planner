@@ -144,6 +144,6 @@ app.delete("/projects/:id", (req, res) => {
   res.status(204).send();
 });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${port}`);
 });
