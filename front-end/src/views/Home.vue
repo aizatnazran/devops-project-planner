@@ -17,6 +17,7 @@
 <script>
 import FilterNav from '../components/FilterNav.vue';
 import SingleProject from '../components/SingleProject.vue';
+import config from '../../config';
 
 export default {
   name: 'Home',
@@ -34,19 +35,19 @@ export default {
   },
   methods: {
     fetchProjects() {
-      fetch('http://localhost:3000/projects')
+      fetch(`${config.API_URL}/api/projects`)
         .then((res) => res.json())
         .then((data) => (this.projects = data))
         .catch((err) => console.log(err));
     },
     fetchStaffs() {
-      fetch('http://localhost:3000/staffs')
+      fetch('${config.API_URL}/api/staffs')
         .then((res) => res.json())
         .then((data) => (this.staffs = data))
         .catch((err) => console.log(err));
     },
     handleDelete(id) {
-      fetch(`http://localhost:3000/projects/${id}`, {
+      fetch(`${config.API_URL}/api/projects/${id}`, {
         method: 'DELETE',
       })
         .then(() => {
@@ -58,7 +59,7 @@ export default {
       let project = this.projects.find((project) => project.id === id);
       project.complete = !project.complete;
 
-      fetch(`http://localhost:3000/projects/${id}`, {
+      fetch(`${config.API_URL}/api/projects/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

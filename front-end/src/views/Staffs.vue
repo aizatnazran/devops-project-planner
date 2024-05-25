@@ -3,31 +3,27 @@
     <FilterNavStaff :current="current" @filterChange="current = $event" />
     <div v-if="staffs && staffs.length">
       <div v-for="staff in filteredStaffs" :key="staff.id">
-        <SingleStaff
-          :staff="staff"
-          @delete="handleDelete"
-          @complete="handleComplete"
-        />
+        <SingleStaff :staff="staff" @delete="handleDelete" @complete="handleComplete" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import FilterNavStaff from "../components/FilterNavStaff.vue";
-import SingleStaff from "../components/SingleStaff.vue";
-
+import FilterNavStaff from '../components/FilterNavStaff.vue';
+import SingleStaff from '../components/SingleStaff.vue';
+import config from '../../config';
 export default {
-  name: "Home",
+  name: 'Home',
   components: { SingleStaff, FilterNavStaff },
   data() {
     return {
       staffs: [],
-      current: "all",
+      current: 'all',
     };
   },
   mounted() {
-    fetch("http://localhost:3000/staffs")
+    fetch(`${config.API_URL}/api/staffs`)
       .then((res) => res.json())
       .then((data) => (this.staffs = data))
       .catch((err) => console.log(err));
@@ -47,10 +43,10 @@ export default {
   },
   computed: {
     filteredStaffs() {
-      if (this.current === "completed") {
+      if (this.current === 'completed') {
         return this.staffs.filter((staff) => staff.complete);
       }
-      if (this.current === "ongoing") {
+      if (this.current === 'ongoing') {
         return this.staffs.filter((staff) => !staff.complete);
       }
       return this.staffs;

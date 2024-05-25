@@ -10,12 +10,12 @@
 
 <script>
 import Swal from 'sweetalert2';
-
+import config from '../../config';
 export default {
   props: ['id'],
   data() {
     return {
-      uri: 'http://localhost:3000/staffs/' + this.id,
+      uri: `${config.API_URL}/api/staffs/` + this.id,
       name: '',
       position: '',
     };

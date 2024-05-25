@@ -10,7 +10,7 @@
 
 <script>
 import Swal from 'sweetalert2';
-
+import config from '../../config';
 export default {
   data() {
     return {
@@ -25,7 +25,7 @@ export default {
         position: this.position,
       };
 
-      fetch('http://localhost:3000/staffs', {
+      fetch(`${config.API_URL}/api/staffs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(staff),

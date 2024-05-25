@@ -16,7 +16,7 @@
 
 <script>
 import Swal from 'sweetalert2';
-
+import config from '../../config';
 export default {
   props: ['id'],
   data() {
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     fetchProject() {
-      fetch(`http://localhost:3000/projects/${this.id}`)
+      fetch(`${config.API_URL}/api/projects/${this.id}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -48,13 +48,13 @@ export default {
         .catch((err) => console.error('Error fetching project:', err));
     },
     fetchStaffs() {
-      fetch('http://localhost:3000/staffs')
+      fetch(`${config.API_URL}/api/staffs`)
         .then((res) => res.json())
         .then((data) => (this.staffs = data))
         .catch((err) => console.error('Error fetching staffs:', err));
     },
     handleSubmit() {
-      fetch(`http://localhost:3000/projects/${this.id}`, {
+      fetch(`${config.API_URL}/api/projects/${this.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

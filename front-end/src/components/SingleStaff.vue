@@ -24,7 +24,7 @@
 
 <script>
 import Swal from 'sweetalert2';
-
+import config from '../../config';
 export default {
   props: ['staff'],
   data() {
@@ -41,7 +41,7 @@ export default {
       }
     },
     fetchAssignedProjects() {
-      fetch('http://localhost:3000/projects')
+      fetch(`${config.API_URL}/api/projects`)
         .then((response) => response.json())
         .then((projects) => {
           this.assignedProjects = projects.filter((project) => project.assignee === this.staff.id);
@@ -63,7 +63,7 @@ export default {
       });
     },
     deleteStaff() {
-      fetch(`http://localhost:3000/staffs/${this.staff.id}`, {
+      fetch(`${config.API_URL}/api/staffs/${this.staff.id}`, {
         method: 'DELETE',
       })
         .then(() => {

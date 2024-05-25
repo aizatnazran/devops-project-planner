@@ -19,13 +19,13 @@
 
 <script>
 import Swal from 'sweetalert2';
-
+import config from '../../config';
 export default {
   props: ['project', 'staffs'],
   data() {
     return {
       showDetails: false,
-      uri: 'http://localhost:3000/projects/' + this.project.id,
+      uri: `${config.API_URL}/api/projects/` + this.project.id,
     };
   },
   computed: {
