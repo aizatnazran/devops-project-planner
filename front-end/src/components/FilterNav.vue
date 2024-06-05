@@ -1,8 +1,6 @@
 <template>
   <nav class="filter-nav">
-    <button @click="updateFilter('all')" :class="{ active: current === 'all' }">
-      View everything
-    </button>
+    <button @click="updateFilter('all')" :class="{ active: current === 'all' }">View All</button>
     <button @click="updateFilter('completed')" :class="{ active: current === 'completed' }">
       Completed
     </button>
