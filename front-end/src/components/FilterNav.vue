@@ -1,18 +1,12 @@
 <template>
   <nav class="filter-nav">
     <button @click="updateFilter('all')" :class="{ active: current === 'all' }">
-      View all
+      View everything
     </button>
-    <button
-      @click="updateFilter('completed')"
-      :class="{ active: current === 'completed' }"
-    >
+    <button @click="updateFilter('completed')" :class="{ active: current === 'completed' }">
       Completed
     </button>
-    <button
-      @click="updateFilter('ongoing')"
-      :class="{ active: current === 'ongoing' }"
-    >
+    <button @click="updateFilter('ongoing')" :class="{ active: current === 'ongoing' }">
       Ongoing
     </button>
     <router-link :to="{ name: 'AddProject' }" class="create-project-btn">
@@ -23,10 +17,10 @@
 
 <script>
 export default {
-  props: ["current"],
+  props: ['current'],
   methods: {
     updateFilter(by) {
-      this.$emit("filterChange", by);
+      this.$emit('filterChange', by);
     },
   },
 };
