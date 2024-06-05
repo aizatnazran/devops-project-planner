@@ -1,5 +1,4 @@
 const express = require("express");
-const helmet = require('helmet');
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
@@ -10,7 +9,6 @@ const {
   errorRate,
   requestCount,
 } = require("./metrics");
-app.use(helmet());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(metricsRouter);
