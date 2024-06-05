@@ -35,19 +35,19 @@ export default {
   },
   methods: {
     fetchProjects() {
-      fetch(`${config.API_URL}/api/projects`)
+      fetch(`${config.API_URL}/projects`)
         .then((res) => res.json())
         .then((data) => (this.projects = data))
         .catch((err) => console.log(err));
     },
     fetchStaffs() {
-      fetch('${config.API_URL}/api/staffs')
+      fetch(`${config.API_URL}/staffs`)
         .then((res) => res.json())
         .then((data) => (this.staffs = data))
         .catch((err) => console.log(err));
     },
     handleDelete(id) {
-      fetch(`${config.API_URL}/api/projects/${id}`, {
+      fetch(`${config.API_URL}/projects/${id}`, {
         method: 'DELETE',
       })
         .then(() => {
@@ -59,7 +59,7 @@ export default {
       let project = this.projects.find((project) => project.id === id);
       project.complete = !project.complete;
 
-      fetch(`${config.API_URL}/api/projects/${id}`, {
+      fetch(`${config.API_URL}/projects/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

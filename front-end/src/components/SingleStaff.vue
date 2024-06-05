@@ -41,7 +41,7 @@ export default {
       }
     },
     fetchAssignedProjects() {
-      fetch(`${config.API_URL}/api/projects`)
+      fetch(`${config.API_URL}/projects`)
         .then((response) => response.json())
         .then((projects) => {
           this.assignedProjects = projects.filter((project) => project.assignee === this.staff.id);
@@ -63,7 +63,7 @@ export default {
       });
     },
     deleteStaff() {
-      fetch(`${config.API_URL}/api/staffs/${this.staff.id}`, {
+      fetch(`${config.API_URL}/staffs/${this.staff.id}`, {
         method: 'DELETE',
       })
         .then(() => {

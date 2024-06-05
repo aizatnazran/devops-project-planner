@@ -23,7 +23,7 @@ export default {
     };
   },
   mounted() {
-    fetch(`${config.API_URL}/api/staffs`)
+    fetch(`${config.API_URL}/staffs`)
       .then((res) => res.json())
       .then((data) => (this.staffs = data))
       .catch((err) => console.log(err));

@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     fetchProject() {
-      fetch(`${config.API_URL}/api/projects/${this.id}`)
+      fetch(`${config.API_URL}/projects/${this.id}`)
         .then((res) => {
           if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`);
@@ -48,13 +48,13 @@ export default {
         .catch((err) => console.error('Error fetching project:', err));
     },
     fetchStaffs() {
-      fetch(`${config.API_URL}/api/staffs`)
+      fetch(`${config.API_URL}/staffs`)
         .then((res) => res.json())
         .then((data) => (this.staffs = data))
         .catch((err) => console.error('Error fetching staffs:', err));
     },
     handleSubmit() {
-      fetch(`${config.API_URL}/api/projects/${this.id}`, {
+      fetch(`${config.API_URL}/projects/${this.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

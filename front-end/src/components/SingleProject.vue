@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       showDetails: false,
-      uri: `${config.API_URL}/api/projects/` + this.project.id,
+      uri: `${config.API_URL}/projects/` + this.project.id,
     };
   },
   computed: {

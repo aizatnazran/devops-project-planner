@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     fetchStaffs() {
-      fetch(`${config.API_URL}/api/staffs`)
+      fetch(`${config.API_URL}/staffs`)
         .then((response) => response.json())
         .then((data) => (this.staffs = data))
         .catch((error) => console.error('Error fetching staffs:', error));
@@ -43,7 +43,7 @@ export default {
         complete: false,
       };
 
-      fetch(`${config.API_URL}/api/projects`, {
+      fetch(`${config.API_URL}/projects`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(project),

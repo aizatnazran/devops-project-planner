@@ -25,7 +25,7 @@ export default {
         position: this.position,
       };
 
-      fetch(`${config.API_URL}/api/staffs`, {
+      fetch(`${config.API_URL}/staffs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(staff),

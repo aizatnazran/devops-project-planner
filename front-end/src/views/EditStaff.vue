@@ -15,7 +15,7 @@ export default {
   props: ['id'],
   data() {
     return {
-      uri: `${config.API_URL}/api/staffs/` + this.id,
+      uri: `${config.API_URL}/staffs/` + this.id,
       name: '',
       position: '',
     };
