@@ -1,0 +1,83 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+        K8S_NAMESPACE = 'default'
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Clone Repository') {
+            steps {
+                git 'https://github.com/aizatnazran/devops-project-planner.git'
+            }
+        }
+
+        stage('Set up Docker') {
+            steps {
+                script {
+                    bat 'docker --version'
+                }
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                script {
+                    bat 'docker-compose build'
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script {
+                    bat 'docker push backend-image:latest'
+                    bat 'docker push frontend-image:latest'
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    bat 'kubectl apply -f kubernetes/backend-deployment.yaml'
+                    bat 'kubectl apply -f kubernetes/frontend-deployment.yaml'
+                }
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                script {
+                    bat 'kubectl rollout status deployment/frontend'
+                    bat 'kubectl rollout status deployment/backend'
+                }
+            }
+        }
+
+        stage('Expose Services') {
+            steps {
+                script {
+                    bat 'kubectl expose deployment frontend --type=NodePort --name=frontend-service'
+                    bat 'kubectl expose deployment backend --type=NodePort --name=backend-service'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful!'
+        }
+        failure {
+            echo 'Deployment failed!'
+        }
+    }
+}
