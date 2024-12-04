@@ -8,7 +8,7 @@
       Ongoing
     </button>
     <router-link :to="{ name: 'AddProject' }" class="create-project-btn">
-      Create Project
+      Add A New Project
     </router-link>
   </nav>
 </template>
