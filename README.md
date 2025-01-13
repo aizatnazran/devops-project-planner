@@ -1,6 +1,8 @@
 # Devops Project Planner
 
-DevOps project assignment building a DevOps pipeline for a Project Planner Web Application
+Sample Project Planner application deployed as a containerized solution. It demonstrates the use of Jenkins Pipeline-as-Code for automating the build and deployment of the application.
+
+![Planner](devops-project-planner.png)
 
 ### Installation
 
